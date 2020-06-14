@@ -148,14 +148,6 @@ const std::vector<Edge> &Network::get_edges() const
   return edges;
 }
 
-const Edge& Network::get_edge(EdgeID id) const {
-  return edges[get_edge_index(id)];
-};
-
-const Edge& Network::get_edge(EdgeIndex index) const{
-  return edges[index];
-};
-
 // Get the ID attribute of an edge according to its index
 EdgeID Network::get_edge_id(EdgeIndex index) const
 {
@@ -364,3 +356,4 @@ void Network::append_segs_to_line(LineString *line,
     }
   }
 }
+
