@@ -21,6 +21,3 @@
 ### Web demo
 
 - [web_demo](web_demo)
-
-### OSM example
-- [OSM example](osm_example)
