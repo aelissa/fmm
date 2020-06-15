@@ -1,0 +1,21 @@
+FROM ubuntu:latest
+RUN apt-get update && apt-get -y update
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
+RUN add-apt-repository universe
+RUN apt-get update
+RUN apt-get install -y build-essential python2 swig libbz2-dev libudunits2-dev python-dev python3.6 python3-pip python3-dev libgdal-dev libgeos-dev libproj-dev libboost-dev libboost-serialization-dev gdal-bin make cmake wget
+RUN wget https://bootstrap.pypa.io/get-pip.py  
+RUN python get-pip.py
+RUN pip3 install jupyter
+RUN pip install ipykernel
+RUN python -m ipykernel install --user
+RUN mkdir -p /fmm
+COPY . /fmm
+WORKDIR /fmm
+RUN mkdir -p build && cd build && cmake .. && make && make install -j4
+RUN cd python && mkdir -p build && cd build && cmake -Wno-dev .. && make
+RUN echo 'export PYTHONPATH=${PYTHONPATH}:/fmm/python/build' >> ~/.bashrc 
+RUN /bin/bash -c 'source ~/.bashrc'
+WORKDIR /fmm/example/notebook/ 
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
