@@ -1,4 +1,4 @@
-A docker image to run fmm through jupyter lab. It runs the latest Ubuntu version and includes Python2 and 3 kernels. 
+A docker image to run fmm through jupyter lab. It builds the latest Ubuntu distribution and includes Python2 and Python3 kernels. 
 
 ### Build the docker image
 
