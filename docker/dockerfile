@@ -16,6 +16,5 @@ WORKDIR /fmm
 RUN mkdir -p build && cd build && cmake .. && make && make install -j4
 RUN cd python && mkdir -p build && cd build && cmake -Wno-dev .. && make
 RUN echo 'export PYTHONPATH=${PYTHONPATH}:/fmm/python/build' >> ~/.bashrc 
-RUN /bin/bash -c 'source ~/.bashrc'
-WORKDIR /fmm/example/notebook/ 
+RUN /bin/bash -c 'source ~/.bashrc' 
 CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
